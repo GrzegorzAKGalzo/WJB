@@ -1,0 +1,22 @@
+ul{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    margin: 0;
+    padding: 18px;
+    background-color: #f4f4f4;
+    text-transform: lowercase;
+    border-radius: 5px;
+    font-family: Poppins;
+}
+li{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+ul :is(a){
+    text-decoration: none;
+    color: #333;
+}
+ul :is(ul){
+    display: none;
+}
