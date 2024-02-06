@@ -1,7 +1,15 @@
-nav{
+html{
     width: 100%;
+
+}
+
+*{
+    box-sizing: border-box;
+}
+nav{
     padding: 30px;
     font-size: 14px;
+    width: clamp(888px,100%,1400px);
 }
 ul{
     display: flex;
@@ -13,9 +21,8 @@ ul{
     text-transform: lowercase;
     border-radius: 5px;
     font-family: 'Poppins', sans-serif;
-    width: 100%;
     position: relative;
-
+    width: 100%;
 }
 ul::after{
     content: '';
@@ -63,8 +70,39 @@ ul :is(ul){
     top: 50%;
     transform: translate(0, -50%);
 }
-li:has(ul)::after{
-    content: 'v';
+
+.dropdown-close, .dropdown-open{
+    position: relative;
+}
+.dropdown-close::after{
+    content: ' ';
+    width: 7px;
+    height: 7px;
+    position: absolute;
+    top: 60%;
+    transform: rotate(45deg) translate(-50%, -50%);
+    right: -20px;
+    border-left: 1px solid #333;
+    border-top: 1px solid #333;
+
+
+    /* border-right: 1px solid #333;
+    border-bottom: 1px solid #333; */
+}
+.dropdown-open::after{
+    content: ' ';
+    width: 7px;
+    height: 7px;
+    position: absolute;
+    top: 60%;
+    transform: rotate(45deg) translate(-50%, -50%);
+    right: -20px;
+    /* border-left: 1px solid #333;
+    border-top: 1px solid #333; */
+
+
+    border-right: 1px solid #333;
+    border-bottom: 1px solid #333;
 }
 
 li > ul{
