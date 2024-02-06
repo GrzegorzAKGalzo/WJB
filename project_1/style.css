@@ -1,3 +1,8 @@
+nav{
+    width: 100%;
+    padding: 30px;
+    font-size: 14px;
+}
 ul{
     display: flex;
     flex-direction: row;
@@ -7,7 +12,32 @@ ul{
     background-color: #f4f4f4;
     text-transform: lowercase;
     border-radius: 5px;
-    font-family: Poppins;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    position: relative;
+
+}
+ul::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+    background: 
+    linear-gradient(
+       to left, 
+       #FF0000,
+        #FF8A00,
+        #DBF72C,
+        #00FF57,
+        #00B2FF,
+        #0400D2,
+        #FA00FF,
+        #FF0000
+
+    );
 }
 li{
     padding-left: 30px;
@@ -19,4 +49,61 @@ ul :is(a){
 }
 ul :is(ul){
     display: none;
+}
+[href="#promocje"]{
+    background-color: #FF4242;
+    padding: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 5px;
+    color: white;
+    text-transform: uppercase;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+li:has(ul)::after{
+    content: 'v';
+}
+
+li > ul{
+    position: absolute;
+    top: 70px;
+    left: 0;
+}
+ul :is(ul)::after{
+    width: 0;
+    height: 0;
+}
+ul :is(ul)::after{
+    width: 0;
+    height: 0;
+}
+li > ul > li:has(ul)::after{
+   content: '';
+}
+
+ul > li > ul {
+    display: flex;
+    flex-direction: column;
+}
+.submenu{
+    display: none;
+    flex-direction: row;
+}
+a + .submenu > li > a {
+    font-weight: bold;
+    text-transform: none;
+}
+li> ul > li > ul{
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 0;
+    padding-top: 18px;
+    text-transform: none;
+}
+li> ul > li > ul li{
+  padding: 0;
 }
