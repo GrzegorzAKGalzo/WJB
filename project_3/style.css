@@ -17,8 +17,10 @@ body {
     width: 100%;
     max-width: 726px;
     height: 374px;
+    padding-bottom: 90px;
     margin: 100px auto;
     border-radius: 10px;
+
 }
 #topBar{
     position: relative;
@@ -67,6 +69,8 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    overflow-y: scroll;
 }
 #commands span{
     padding-top: 14px;
@@ -84,4 +88,8 @@ body {
     padding-left: 14px;
     outline: 0;
 
+}
+ul {
+    list-style-type: none;
+    padding-left: 10px;
 }
