@@ -1,4 +1,6 @@
 const terminal = document.getElementById("commands");
+let commandHistory = [];
+let commandHistoryTemp = []
 
 const BUILT_COMMANDS = {
     "clear" : "Clear terminal",
@@ -22,14 +24,44 @@ document.getElementById("form").addEventListener('submit', function (e) {
     let commandInput = document.getElementById("commandInput");
     let command = commandInput.value;
     terminal.innerHTML += "<span>you: " + command + "</span>";
-
-    runCommand(command);
-    commandInput.value = ''; // Clear the input
+    if (command !== "") {
+        runCommand(command);
+        commandInput.value = '';
+    }
 
 });
 
+
+commandInput.addEventListener('keydown', function (e) {
+    let popped;
+  
+        switch (e.key) {
+        case 'ArrowUp':
+            if(commandHistory.length > 0){
+                popped = commandHistory.pop();
+                commandInput.value = popped;
+                commandHistoryTemp.push(popped);
+                console.log(commandHistoryTemp);
+            }
+            break;
+        case 'ArrowDown':
+
+            if(commandHistoryTemp.length > 0){
+                popped = commandHistoryTemp.pop(popped);
+                commandInput.value = popped;
+                commandHistory.push(popped);
+            }
+            break;
+    }
+});
+
+
+
+
 const runCommand = function (command) {
-    command = command.toLowerCase();
+    commandHistory.push(command);
+    console.log(commandHistory);
+    command = command.toLowerCase().trim();
     
     for (const [key, value] of Object.entries(CUSTOM_COMMANDS)) {
         if(command == key){
@@ -106,3 +138,4 @@ const clearTerminal = function () {
 const output = function (msg) {
     terminal.innerHTML += "<span>terminal: "+ msg +"</span>";
 };
+
