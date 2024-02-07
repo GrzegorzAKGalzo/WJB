@@ -22,7 +22,7 @@ async function getSearch(phrase) {
       const searchTerm = input.value;
   
       delayTimer = setTimeout(async function () {
-          if (searchTerm.length >= 3) {
+          if (searchTerm.length >= 1) {
               searchOutput.innerHTML = "";
   
               console.log(searchTerm);
