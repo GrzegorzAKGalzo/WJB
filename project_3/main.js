@@ -31,6 +31,14 @@ document.getElementById("form").addEventListener('submit', function (e) {
 const runCommand = function (command) {
     command = command.toLowerCase();
     
+    for (const [key, value] of Object.entries(CUSTOM_COMMANDS)) {
+        if(command == key){
+            output(value.msg)
+            return 1;
+        }
+    }
+
+
     if (command.startsWith("double ")) {
         doubleTerminal(command);
     } else {
