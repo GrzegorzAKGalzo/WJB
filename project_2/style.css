@@ -70,6 +70,7 @@ img+img{
     background-color: #F4F4F4;
     border-radius: 5px;
     margin-top: 10px;
+    display: none;
 }
 #search_output li{
     padding: 20px;
@@ -92,4 +93,13 @@ img+img{
     position: absolute;
     left: 10px;
     z-index: -1;
+}
+#search_output hr:last-of-type{
+    display: none;
+}
+#spinner{
+    display: none;
+}
+#search_output:empty{
+    display: none;
 }
