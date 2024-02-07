@@ -1,0 +1,87 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family:  Roboto Mono;
+    font-size: 16px;
+}
+
+body {
+    width: 100%;
+    font-size: 14px;
+    
+}
+#terminalWindow{
+    position: relative;
+    background-color: #131212;
+    width: 100%;
+    max-width: 726px;
+    height: 374px;
+    margin: 100px auto;
+    border-radius: 10px;
+}
+#topBar{
+    position: relative;
+    width: 100%;
+    background-color: #3E3E3E;
+    height: 20px;
+    border-radius: 10px 10px 0 0 ;
+    gap: 5px;
+    align-items: center;
+}
+.cricle{
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    padding-left: 5px;
+}
+#options{
+    padding-left: 5px;
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+#topBar span{
+    font-size: 13px;
+    font-family: Inter;
+    font-weight: bold;
+    position: absolute;
+    color: #C2C2C2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#close{
+    background-color: #E52A2A ;
+}
+#minimaze{
+    background-color: #E5BC2A ;
+}
+#maximaze{
+    background-color: #2AE53D ;
+}
+#commands{
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+#commands span{
+    padding-top: 14px;
+}
+#commandInput{
+    background-color: #3E3E3E;
+    position: absolute;
+    bottom: 20px;
+    width: 95%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border: none;
+    height: 40px;
+    color: white;
+    padding-left: 14px;
+    outline: 0;
+
+}
