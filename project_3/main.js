@@ -1,6 +1,8 @@
 const terminal = document.getElementById("commands");
 let commandHistory = [];
-let commandHistoryTemp = []
+let commandHistoryTemp = [];
+const commandInput = document.getElementById("commandInput");
+const suggestionsContainer = document.getElementById("suggestions");
 
 const BUILT_COMMANDS = {
     "clear" : "Clear terminal",
@@ -91,6 +93,7 @@ const runCommand = function (command) {
                 output('Unknown command. Type "help" for a list of commands.');
         }
     }
+    clearSuggestions();
 };
 
 const doubleTerminal = function (command) {
@@ -139,3 +142,44 @@ const output = function (msg) {
     terminal.innerHTML += "<span>terminal: "+ msg +"</span>";
 };
 
+
+
+
+// SUGGEST
+commandInput.addEventListener('input', function () {
+    const inputValue = commandInput.value.toLowerCase();
+    const suggestions = getCommandSuggestions(inputValue);
+    displaySuggestions(suggestions);
+});
+
+
+function displaySuggestions(suggestions) {
+    suggestionsContainer.innerHTML = '';
+
+    suggestions.forEach(suggestion => {
+        const suggestionElement = document.createElement('div');
+        suggestionElement.textContent = suggestion;
+        suggestionElement.addEventListener('click', function () {
+            commandInput.value = suggestion;
+            clearSuggestions();
+        });
+        suggestionsContainer.appendChild(suggestionElement);
+    });
+
+    if (suggestions.length > 0) {
+        suggestionsContainer.style.display = 'block';
+    } else {
+        suggestionsContainer.style.display = 'none';
+    }
+}
+
+function clearSuggestions() {
+    suggestionsContainer.innerHTML = '';
+    suggestionsContainer.style.display = 'none';
+}
+
+function getCommandSuggestions(prefix) {
+    prefix = prefix.toLowerCase();
+    const allCommands = Object.keys(BUILT_COMMANDS).concat(Object.keys(CUSTOM_COMMANDS));
+    return allCommands.filter(command => command.startsWith(prefix));
+}
