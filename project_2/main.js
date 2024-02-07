@@ -1,17 +1,5 @@
 // https://dummyjson.com/products/search?q=XXX&limit=5&delay=1000
 
-
-const sendRequest = (phrase) =>{
-    const request = new Request("https://dummyjson.com/products/search?q="+ phrase +"&limit=5&delay=1000");
-    fetch(request)
-    .then((response) => response.blob())
-    .then((blob) => {
-        image.src = URL.createObjectURL(blob);
-    });
-
-};
-
-
 async function getSearch(phrase) {
     const response = await fetch("https://dummyjson.com/products/search?q="+ phrase +"&limit=5&delay=1000");
     const list = await response.json();
@@ -22,31 +10,39 @@ async function getSearch(phrase) {
   }
 
   
-  const input =  document.getElementById("search_input").querySelector("input");
-  input.addEventListener('input', async function () {
-    const searchOutput = document.getElementById("search_output");
-    const spinner = document.getElementById("spinner");
-
-    if (input.value.length >= 3) {
-        searchOutput.innerHTML = "";
-
-        console.log(input.value);
-        try {
-            spinner.style.display="block";
-            const result = await getSearch(input.value);
-            
-            console.log(result);
-            result.forEach(item => {
-                searchOutput.innerHTML += "<li>"+item["title"]+"<span>$"+item["price"]+"</span></li>";
-                searchOutput.innerHTML += "<hr>";
-            });
-            searchOutput.style.display = "block";
-            spinner.style.display="none";
-
-        } catch (error) {
-            console.error(error);
-        }
-    } else{
-        searchOutput.style.display ="none";
-    }
-});
+  const input = document.getElementById("search_input").querySelector("input");
+  const searchOutput = document.getElementById("search_output");
+  const spinner = document.getElementById("spinner");
+  
+  let delayTimer;
+  
+  input.addEventListener('input', function () {
+      clearTimeout(delayTimer);
+  
+      const searchTerm = input.value;
+  
+      delayTimer = setTimeout(async function () {
+          if (searchTerm.length >= 3) {
+              searchOutput.innerHTML = "";
+  
+              console.log(searchTerm);
+              try {
+                  spinner.style.display = "block";
+                  const result = await getSearch(searchTerm);
+  
+                  console.log(result);
+                  result.forEach(item => {
+                      searchOutput.innerHTML += "<li>" + item["title"] + "<span>$" + item["price"] + "</span></li>";
+                      searchOutput.innerHTML += "<hr>";
+                  });
+                  searchOutput.style.display = "block";
+                  spinner.style.display = "none";
+              } catch (error) {
+                  console.error(error);
+              }
+          } else {
+              searchOutput.style.display = "none";
+          }
+      }, 500); 
+  });
+  

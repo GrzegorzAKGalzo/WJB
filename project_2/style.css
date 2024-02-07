@@ -99,7 +99,17 @@ img+img{
 }
 #spinner{
     display: none;
+    animation: rotate infinite 4s linear;
 }
-#search_output:empty{
+#search_output:empty::before{
     display: none;
+}
+
+@keyframes rotate{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
 }
